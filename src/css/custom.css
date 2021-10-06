@@ -1,0 +1,12 @@
+.show {
+    display: block;
+}
+
+.hide {
+    display: none;
+}
+
+.disabled {
+    opacity: 0.4;
+    pointer-events:none;
+}

@@ -1,4 +1,3 @@
-# jack-And-Subs
 
 # Program: Management of submarines in an ocean
 

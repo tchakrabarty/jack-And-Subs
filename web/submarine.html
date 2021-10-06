@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Submarine Management</title>
+
+    <link href="dist/css/style.css" rel="stylesheet">
+</head>
+<body>
+    
+        <div class="container">
+          <h4 class="display-5">Submarine</h4>
+          <h5>Register the Submarine here!</h5>
+        </div>
+  
+      <div class="container">
+
+          <div id="error" class="alert alert-danger hide">
+            <alert>Submarine is already registered with the name. Please try with different name</alert>
+          </div>
+
+          <div id="success" class="alert alert-success hide">
+              <alert>Submarine is registered successfully.</alert>
+            </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <form>
+              <div class="form-group">
+                <label for="name">Submarine Name:</label>
+                <input type="text" class="form-control" id="name">
+              </div>
+              <input type="hidden" id="subuuid"></input>
+            </form>            
+          </div>
+          <div class="col-md-4">
+              <a class="btn btn-secondary hide" href="#" role="button" id="hideSubmarine">Hide Submarine</a>
+              <a class="btn btn-primary" href="#" role="button" id="registerSubmarine">Register Submarine</a>
+          </div>
+        </div>
+      </div> <!-- /container -->
+
+    <script src="dist/js/script.js"></script>
+    <script>
+      var controlRoomOperator = "submarine";
+      $( document ).ready(function() {
+        $("#registerSubmarine").click(function(){
+
+          // Assign unique uuid to each submarine
+          $("#subuuid").val(UUID());
+
+          var submarine = {
+            name: $("#name").val(),
+            uuid: $("#subuuid").val()
+          }
+
+          publishToRegisterSubmarine(submarine);
+        });
+
+        $("#hideSubmarine").click(function(){
+
+          var submarine = {
+            name: $("#name").val(),
+            uuid: $("#subuuid").val()
+          }
+
+          publishToHideSubmarine(submarine);
+        });
+
+        registerPubNub();
+        handleCallbackOperations();
+                
+      }); 
+    </script>
+</body>
+</html>
